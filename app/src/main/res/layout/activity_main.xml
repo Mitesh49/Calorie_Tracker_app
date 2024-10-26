@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- Title Section -->
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Calorie Tracker"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:background="#FFC801"
+        android:padding="16dp"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/navigation"
+        android:layout_below="@id/title_text">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Set Target Calorie Input -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Set Target Calories: "
+                    android:textSize="18sp"
+                    android:textColor="#000000" />
+
+                <EditText
+                    android:id="@+id/et_target_calories"
+                    android:layout_width="118dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Calories"
+                    android:inputType="number"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp" />
+
+                <Button
+                    android:id="@+id/btn_set_target"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textColor="#000000"
+                    android:backgroundTint="#FFC801" />
+            </LinearLayout>
+
+            <!-- Calorie Progress Circle -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_goal_calories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Goal: 0 kcal"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#FF707070"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:id="@+id/tv_calories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.0"
+                    android:textColor="#FF00897B"
+                    android:textSize="32sp"
+                    android:layout_centerInParent="true" />
+
+                <TextView
+                    android:id="@+id/tv_total_calories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Calories :"
+                    android:textColor="#FF707070"
+                    android:textSize="12sp"
+                    android:layout_below="@id/tv_calories"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="35dp" />
+
+                <ProgressBar
+                    android:id="@+id/progress_circle"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_centerInParent="true"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/circular_progress_bar"
+                    android:rotation="-90" />
+
+            </RelativeLayout>
+
+            <!-- Macronutrients -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/protein_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Proteins\n0.0 gr"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/fats_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Fats\n0.0 gr"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/carbs_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Carbs\n0.0 gr"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <!-- Add Meal Button -->
+            <Button
+                android:id="@+id/btn_add_meals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Meals"
+                android:layout_marginTop="16dp"
+                android:textColor="#000000"
+                android:backgroundTint="#FFC801" />
+
+            <!-- Meal Input Section (Initially hidden) -->
+            <LinearLayout
+                android:id="@+id/meal_input_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="16dp"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/et_meal_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Meal Name"
+                    android:textColor="#000000"
+                    android:layout_marginBottom="8dp"/>
+
+                <EditText
+                    android:id="@+id/et_meal_calories"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Calories (kcal)"
+                    android:inputType="number"
+                    android:textColor="#000000"
+                    android:layout_marginBottom="8dp"/>
+
+                <EditText
+                    android:id="@+id/et_meal_proteins"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Proteins (gr)"
+                    android:inputType="number"
+                    android:textColor="#000000"
+                    android:layout_marginBottom="8dp"/>
+
+                <EditText
+                    android:id="@+id/et_meal_fats"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Fats (gr)"
+                    android:inputType="number"
+                    android:textColor="#000000"
+                    android:layout_marginBottom="8dp"/>
+
+                <EditText
+                    android:id="@+id/et_meal_carbs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Carbs (gr)"
+                    android:inputType="number"
+                    android:textColor="#000000"
+                    android:layout_marginBottom="8dp"/>
+
+                <Button
+                    android:id="@+id/btn_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add Meal"
+                    android:textColor="#000000"
+                    android:backgroundTint="#FFC801"/>
+            </LinearLayout>
+
+            <!-- No Meals Added TextView -->
+            <TextView
+                android:id="@+id/tv_no_meals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No meals added yet."
+                android:textColor="#FF707070"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"/> <!-- Initially hidden -->
+
+            <!-- Container for dynamic meal items -->
+            <LinearLayout
+                android:id="@+id/meal_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="16dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_navigation_menu"/>
+
+</RelativeLayout>
